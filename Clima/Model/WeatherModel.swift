@@ -13,10 +13,13 @@ struct WeatherModel {
     let cityName: String
     let temperature: Double
     
+    // Modo alternativo di tradurre un tipo "Double" in un tipo "String". La tipologia ' {return} ' usata nelle proprietà(variabili/costanti) è uguale a fare ' = '.
     var temperatureString: String {
         return String(format: "%.1f", temperature)
     }
     
+    
+    // Switcho il conditionName a seconda del conditionId al fine di ritornare l'immagine che desidero, a seconda del meteo ottenuto.
     var conditionName: String {
         switch conditionId {
         case 200...232:

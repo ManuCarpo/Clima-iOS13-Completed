@@ -23,9 +23,12 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         
         locationManager.delegate = self
+        
+        //Nelle due righe sottostanti ci sono le richieste fatte all'utente per permettere all'app di ricevere la posizione
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
         
+        // Imposto la classe come delegato sia del weatherManager sia del searchTextField
         weatherManager.delegate = self
         searchTextField.delegate = self
     }
@@ -70,6 +73,7 @@ extension WeatherViewController: UITextFieldDelegate {
 
 extension WeatherViewController: WeatherManagerDelegate {
     
+    //Permetto all'app di lavorare nel beckground così attraverso il DispatchQueue, al fine di non farla crushare.
     func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
         DispatchQueue.main.async {
             self.temperatureLabel.text = weather.temperatureString
